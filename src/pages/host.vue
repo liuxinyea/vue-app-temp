@@ -1,12 +1,12 @@
 <template>
-  <a-layout id="components-layout-demo-custom-trigger">
+  <a-layout style="height: 100%;" id="components-layout-demo-custom-trigger">
     <a-layout-sider
       :trigger="null"
       collapsible
       v-model="collapsed"
     >
       <div class="logo" />
-      <a-menu theme="dark" mode="inline" :defaultSelectedKeys="['1']">
+      <a-menu theme="dark" mode="inline" :defaultSelectedKeys="['2']">
         <a-menu-item key="1">
           <a-icon type="user" />
           <span>nav 1</span>
@@ -22,7 +22,7 @@
       </a-menu>
     </a-layout-sider>
     <a-layout>
-      <a-layout-header style="background: #fff; padding: 0">
+      <a-layout-header style="background: #fff; padding: 0px; position: relative;">
         <a-icon
           class="trigger"
           :type="collapsed ? 'menu-unfold' : 'menu-fold'"
@@ -51,6 +51,8 @@
     padding: 0 24px;
     cursor: pointer;
     transition: color .3s;
+    position: absolute;
+    left:0px;
   }
 
   #components-layout-demo-custom-trigger .trigger:hover {
