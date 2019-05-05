@@ -3,17 +3,25 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import Antd from 'ant-design-vue'
-import 'ant-design-vue/dist/antd.css'
-// import Viser from 'viser-vue'
-import axios from './utils/axios'
-Vue.prototype.axios = axios;
-Vue.use(Antd);
+import axios from 'axios';
+import MintUI from 'mint-ui'
+import {MessageBox} from 'mint-ui'
+// import VueScroller from 'vue-scroller'
+import { Header } from 'mint-ui';
 
-Vue.config.productionTip = false
+import 'mint-ui/lib/style.css'
+Vue.use(MintUI);
+// Vue.use(VueScroller);
+
+
+Vue.component(Header.name, Header);
+Vue.prototype.$message=MessageBox;
+Vue.config.productionTip = false;
+
 /* eslint-disable no-new */
-/* 新建一个vue实例,包含要插入的elementId，router路由，component组件和template模板 */
 new Vue({
+  el: '#app',
   router,
-  render: h => h(App)
-}).$mount('#app');
+  components: { App },
+  template: '<App/>'
+})
