@@ -19,7 +19,7 @@
           :bottom-method="loadBottom"
           :bottom-all-loaded="false"
           ref="loadmore">
-            <mt-cell v-for="item in list" :key="item" :title="item.toString()"></mt-cell>
+            <mt-cell v-for="(item,index) in list" :key="index" :title="item.toString()"></mt-cell>
           <!--<div slot="top" class="mint-loadmore-top">-->
             <!--<span v-show="topStatus !== 'loading'" :class="{ 'rotate': topStatus === 'drop' }">↓</span>-->
             <!--<span v-show="topStatus === 'loading'">Loading...</span>-->
@@ -73,13 +73,6 @@ export default {
       setTimeout(function () {
         self.list=[1,2,3,4,5,6,7,8,9,10,11,12,13];
         self.$refs.loadmore.onTopLoaded();
-      },2000);
-    },
-    loadBottom(){
-      let self=this;
-      setTimeout(function () {
-        self.list.push("aaa")
-        self.$refs.loadmore.onBottomLoaded();
       },2000);
     },
   }
