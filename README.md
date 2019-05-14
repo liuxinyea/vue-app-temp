@@ -1,6 +1,6 @@
-# mobile web app develop by vue.js&minit-ui
+# web app by vue.js&mint-ui
 
-> A Vue.js mobile web app project
+> a mobile web app develop by vue.js&mint-ui
 
 ## Build Setup
 
