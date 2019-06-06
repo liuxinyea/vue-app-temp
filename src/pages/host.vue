@@ -76,13 +76,6 @@ export default {
         self.$refs.loadmore.onTopLoaded();
       },2000);
     },
-    loadBottom(){
-      let self=this;
-      setTimeout(function () {
-        self.list.push("aaa")
-        self.$refs.loadmore.onBottomLoaded();
-      },2000);
-    },
   }
 }
 </script>
