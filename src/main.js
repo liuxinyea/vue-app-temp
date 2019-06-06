@@ -5,17 +5,17 @@ import App from './App'
 import router from './router'
 import axios from 'axios';
 import MintUI from 'mint-ui'
-import {MessageBox} from 'mint-ui'
+// import {MessageBox} from 'mint-ui'
 // import VueScroller from 'vue-scroller'
-import { Header } from 'mint-ui';
 
 import 'mint-ui/lib/style.css'
 Vue.use(MintUI);
 // Vue.use(VueScroller);
 
+axios.defaults.baseURL="";
 
-Vue.component(Header.name, Header);
-Vue.prototype.$message=MessageBox;
+// Vue.component(Header.name, Header);
+// Vue.prototype.$message=MessageBox;
 Vue.config.productionTip = false;
 
 /* eslint-disable no-new */

@@ -6,7 +6,7 @@
       <!--</router-link>-->
       <mt-button icon="more" slot="right"></mt-button>
     </mt-header>
-    <mt-tab-container style="margin-top:50px;margin-bottom: 50px" :swipeable="false" v-model="selected">
+    <mt-tab-container style="margin-top:50px;margin-bottom: 50px" :swipeable="true" v-model="selected">
       <mt-tab-container-item id="tab1">
         <mt-loadmore
           topPullText="下拉刷新"
@@ -18,8 +18,9 @@
           :top-method="loadTop"
           :bottom-method="loadBottom"
           :bottom-all-loaded="false"
+          :auto-fill="false"
           ref="loadmore">
-            <mt-cell v-for="item in list" :key="item" :title="item.toString()"></mt-cell>
+            <mt-cell v-for="(item,index) in list" :key="index" :title="item.toString()"></mt-cell>
           <!--<div slot="top" class="mint-loadmore-top">-->
             <!--<span v-show="topStatus !== 'loading'" :class="{ 'rotate': topStatus === 'drop' }">↓</span>-->
             <!--<span v-show="topStatus === 'loading'">Loading...</span>-->
