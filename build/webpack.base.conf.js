@@ -18,7 +18,7 @@ module.exports = {
   output: {
     path: config.build.assetsRoot,
     filename: '[name].js',
-    publicPath: process.env.NODE_ENV === 'production'
+    publicPath: process.env.NODE_ENV === 'production'||process.env.NODE_ENV === 'testing'
       ? config.build.assetsPublicPath
       : config.dev.assetsPublicPath
   },
@@ -41,6 +41,10 @@ module.exports = {
         test: /\.js$/,
         loader: 'babel-loader',
         include: [resolve('src'), resolve('test'), resolve('node_modules/webpack-dev-server/client')]
+      },
+      {
+        test: /\.less$/,
+        loader: "style-loader!css-loader!less-loader"
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,

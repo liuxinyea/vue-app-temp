@@ -2,7 +2,9 @@
   <div id="app">
     <!--<img src="./assets/logo.png">-->
     <transition :name="transitionName">
-      <router-view class="Router" />
+      <!--<keep-alive include="myPage">-->
+        <router-view class="Router" />
+      <!--</keep-alive>-->
     </transition>
   </div>
 </template>
@@ -17,10 +19,14 @@ export default {
   },
   watch: {
     '$route' (to, from) {
+      // console.log(from);
+      // console.log(to);
       const toDepth = to.path.split('/').length;
       const fromDepth = from.path.split('/').length;
       this.transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left'
-    }
+    },
+  },
+  created(){
   }
 }
 </script>

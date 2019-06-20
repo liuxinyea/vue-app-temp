@@ -7,17 +7,15 @@
     <!--&lt;!&ndash;<mt-button icon="more" slot="right"/>&ndash;&gt;-->
     <!--</mt-header>-->
     <div class="head" :style="{background:head_bg}">
-      <router-link to="/my">
-        <img style="height:15px;width: 9px;" src="static/img/back.png">
-      </router-link>
+      <img style="height:.30rem;width: .18rem;" @click="$router.back()" src="static/img/back.png" srcset="static/img/back.png 1x,static/img/back@2x.png 2x">
       <span class="head_title">我的授信</span>
-      <img style="width: 27px;height: 5px;" src="static/img/more.png">
+      <img style="width: .40rem;height: .10rem;" src="static/img/more.png" srcset="static/img/more.png 1x,static/img/more@2x.png 2x">
     </div>
     <div class="header">
       <div class="header_content">
-        <span class="head_text" style=" margin-left: 20px;margin-top: 20px">某某某某有限公司</span>
+        <span class="head_text" style=" margin-left: .40rem;margin-top: .40rem" @click="addPan">某某某某有限公司</span>
         <div class="show_content" ref="panContent">
-          <pan :radius="110">
+          <pan :radius="2.2" :percent="pan.panVer" >
             <div style="align-items: center;margin-top:30px;margin-left:5px">
               <span class="head_text">授信余额</span>
               <span class="head_text_num">50000</span>
@@ -63,47 +61,60 @@
     data() {
       return {
         listData:[1,2,3,4,5,6,7,8],
-        head_bg:"rgba(53,152,255,1)",
-        pageWidth:0
+        head_bg:"rgba(53,152,255,0)",
+        pageWidth:0,
+        pan:this.$store.state
       }
+    },
+    computed:{
+      // pan(){
+      //   return this.$store.state.panVer
+      // }
     },
     methods:{
       handleScroll(){
         let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
         this.head_bg=`rgba(53,152,255,${scrollTop/60})`;
+
       },
+      addPan(){
+        // this.pan=30;
+        this.$store.setState("panVer",50);
+      }
     },
     mounted () {
       window.addEventListener('scroll', this.handleScroll);
       this.pageWidth=this.$refs.panContent.offsetHeight;  //100
-
     },
+    created(){
+    }
   }
 </script>
 
-<style scoped>
+<style scoped lang="less">
+  @import "../../assets/css/common.less";
   .little_line{
     position: absolute;
-    height: 4px;
-    width: 10px;
+    height: .08rem;
+    width: .20rem;
     /*border-radius: 10px;*/
   }
   .list_content_text{
-    font-size:13px;
+    font-size:.26rem;
     color:#666666;
-    line-height:25px;
-    margin-left: 10px;
+    line-height:.50rem;
+    margin-left:.20rem;
   }
   .list_item_content{
     width: 90%;
     margin-left: 5%;
   }
   .list_item_head_text{
-    font-size:15px;
+    font-size:.30rem;
     font-weight: bold;
     color:#333333;
-    line-height:25px;
-    margin-left: 10px;
+    line-height:.50rem;
+    margin-left:.20rem;
   }
   .list_head{
     width:100%;
@@ -114,67 +125,73 @@
     width: 90%;
     margin-left: 5%;
     background-color: white;
-    margin-bottom: 10px;
-    border-radius:5px ;
+    margin-bottom: .20rem;
+    border-radius:.10rem ;
+    box-shadow: @cardShadow;
   }
   .list_item_head{
     width:90%;
     margin-left: 5%;
     flex-direction: row;
-    height: 44px;
+    height: .88rem;
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid rgba(238,238,238,1);
   }
   .ver_line{
-    height:12px ;
-    width: 2px;
+    height:.24rem ;
+    width: .04rem;
     background-color: #268CF0;
-    margin-left: 15px;
+    margin-left: .30rem;
   }
   .list_head_title{
-    font-size:15px;
+    font-size:.30rem;
     font-weight:bold;
     color:rgba(51,51,51,1);
-    line-height:42px;
-    margin-left: 3px;
+    line-height:.84rem;
+    margin-left: .06rem;
   }
   div{
     display: flex;
     flex-direction: column;
   }
   .show_content{
-    margin-top:25px;
+    margin-top: .50rem;
     align-items: center;
     justify-content: center;
+    /*position: relative;*/
   }
   .header{
     width: 100%;
-    height: 270px;
-    background: url("../../assets/img/balance_bg.png") ;
+    height: 5.40rem;
+    background-image: -webkit-image-set( url("../../assets/img/balance_bg.png") 1x, url("../../assets/img/balance_bg@2x.png") 2x);
+    background-image: image-set( url("../../assets/img/balance_bg.png") 1x, url("../../assets/img/balance_bg@2x.png") 2x);
+    /*background-size:100% 5.40rem;*/
+    background-repeat: space;
     background-position: center;
   }
   .head_text{
-    font-size:13px;
+    font-size:.26rem;
     font-weight:400;
     color:rgba(255,255,255,1);
-    line-height:21px;
+    line-height:.42rem;
   }
   .head_text_num{
-    font-size:38px;
+    font-size:.76rem;
     font-weight:500;
     color:rgba(255,255,255,1);
-    margin-top: 10px;
-    line-height:31px;
+    margin-top: .20rem;
+    line-height:.62rem;
   }
   .header_content{
     width: 100%;
-    margin-top: 50px;
+    margin-top: 1rem;
   }
   .head{
     width:90%;
-    height: 50px;
+    height: 1rem;
     position: fixed;
+    z-index: 1;
     align-items: center;
     justify-content: space-between;
     flex-direction: row;
@@ -182,8 +199,8 @@
     padding-right: 5%;
   }
   .head_title{
-    font-size: 18px;
+    font-size: .36rem;
     color: white;
-    margin-left: 10px;
+    margin-left: .20rem;
   }
 </style>

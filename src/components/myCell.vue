@@ -6,11 +6,11 @@
     <slot name="lable">
       <span v-if="label" class="mint_cell_label" v-text="label"></span>
     </slot>
-    <div  style="position: absolute;right: 25px">
+    <div  style="position: absolute;right: .60rem">
       <slot name="right">
       </slot>
     </div>
-    <img v-if="is_link" class="mint_cell_link" :src="imgUrl"/>
+    <img v-if="is_link" class="mint_cell_link" srcset="static/img/link.png 1x,static/img/link@2x.png 2x" :src="imgUrl"/>
   </div>
 </template>
 
@@ -32,13 +32,13 @@
             type:Boolean
           },
           height:{
-            default:'50px',
+            default:'1rem',
             type:String
           },
       },
       data(){
         return{
-          imgUrl:"static/img/link@2x.png"
+          imgUrl:"static/img/link.png"
         }
       },
       methods:{
@@ -60,8 +60,8 @@
     border-bottom: 1px solid #eee;
   }
   .mint_cell_text{
-    font-size: 13px;
-    width: 130px;
+    font-size: .26rem;
+    width: 2.6rem;
   }
   /*.cell_style :active{*/
     /*flex-direction: row;*/
@@ -72,9 +72,9 @@
     /*border-bottom: 1px solid #eee;*/
   /*}*/
   .mint_cell_link{
-    height: 13px;
-    width: 9px;
-    margin-top: 3px;
+    height:.26rem;
+    width: .18rem;
+    margin-top: .06rem;
   }
 
 </style>

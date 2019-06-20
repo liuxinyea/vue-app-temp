@@ -1,0 +1,103 @@
+#mainColor(){
+  primary: #268cf0;
+  primaryLight: #17acf0;
+  orange:#FA8144;
+  fontColor:#333;
+  fontColorLightOne:#666;
+  fontColorLightTwo:#999;
+  backgroundDark:#eeeeee ;
+  backgroundLight:#ffffff ;
+  cardShadow:.1rem .1rem .25rem #aaa;
+  //shadow:.0rem .0rem .1rem #aaa
+}
+@cardShadow:.1rem .1rem .25rem #ccc;
+.button_group{
+  position: absolute;bottom: 0;left:0;width: 100%;align-items: center;
+  justify-content: space-around;
+  margin-bottom: .40rem;
+  flex-direction: row;
+}
+.select_item_text{
+  font-size:.26rem;
+  color: #268cf0;
+}
+.select_area{
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: .40rem;
+}
+.select_item{
+  width: 2rem;
+  height: .60rem;
+  align-items: center;
+  justify-content: center;
+  border-radius:.1rem;
+  margin-top: .1rem;
+  position: relative;
+}
+.select_item_active{
+  border:1px solid rgba(38,140,240,1);
+  .select_item()
+}
+.select_item_no{
+  border:1px solid rgba(221,221,221,1);
+  .select_item()
+}
+.pop_area{
+  height:6.6rem;
+  width:100%;
+  flex-direction: column;
+  background:rgba(255,255,255,1);
+  border-radius:.20rem .20rem 0 0;
+}
+.middle_area{
+  width: 6rem;
+  height: 4.5rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius:.10rem .10rem .10rem .10rem;
+  .middle_top{
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 3.64rem;
+    width: 100%;
+    .middle_img{
+      width: 2.12rem;
+      height: 1.4rem;
+    }
+    .middle_text{
+      margin-top: .38rem;
+      font-size:.30rem;
+      font-weight:400;
+      color:rgba(51,51,51,1);
+      line-height:.30rem;
+    }
+    .middle_text_date{
+      margin-top: .29rem;
+      font-size:.24rem;
+      font-weight:400;
+      color:rgba(51,51,51,1);
+      line-height:.30rem;
+    }
+  }
+  .middle_bottom{
+    height: .85rem;
+    width: 100%;
+    font-size:.30rem ;
+    color: #268CF0;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid #DDDDDD;
+  }
+  .close_img{
+     width: .24rem;
+    height: .24rem;
+    position: absolute;
+    right: .24rem;
+    top: .24rem;
+  }
+}
+

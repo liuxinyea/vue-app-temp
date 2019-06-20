@@ -1,63 +1,73 @@
 <template>
-    <div style="background-color: #eee">
-      <mt-header style="height:50px;background-color: #3598FF;font-size:18px" :fixed="true" title="最新报价" >
-        <router-link to="/my" slot="left">
-          <mt-button icon="back" style="color: white"/>
-        </router-link>
-        <mt-button icon="more" slot="right"/>
-      </mt-header>
-      <div class="list_area">
-        <div v-for="item in listData">
-          <div style="width: 100%;align-items: center;justify-content: center">
-            <span style="font-size: 12px;color: #999;margin-top: 5px;margin-bottom: 5px">更新于2019-05-28  7:00</span>
+  <page-layout title="最新报价" background="#eee">
+    <div class="list_area" slot="pageContent">
+      <div v-for="item in listData">
+        <div style="width: 100%;align-items: center;justify-content: center">
+          <span style="font-size:.24rem;color: #999;margin-top: .1rem;margin-bottom: .1rem">更新于{{item.updateDate}}</span>
+        </div>
+        <div class="list_item">
+          <div class="list_item_head">
+            <span class="list_item_head_text">{{item.productName}}</span>
+            <!--<span class="list_item_head_text">¥ 20000</span>-->
           </div>
-          <div class="list_item">
-            <div class="list_item_head">
-              <span class="list_item_head_text">甲醇</span>
-              <!--<span class="list_item_head_text">¥ 20000</span>-->
+          <div  class="list_item_content">
+            <span class="list_content_text">单价：{{item.currentPrice}}元/吨</span>
+            <span class="list_content_text">年产量：300万吨</span>
+          </div>
+          <div class="list_item_foot">
+            <div class="link_btn" @click="goBuy(item)">
+              <span class="list_item_foot_text">我要采购</span>
             </div>
-            <div  class="list_item_content">
-              <span class="list_content_text">单价：2098元/吨</span>
-              <span class="list_content_text">年产量：300万吨</span>
-            </div>
-            <div class="list_item_foot">
-              <div class="link_btn">
-                <span class="list_item_foot_text">我要采购</span>
-              </div>
-              <!--<span class="list_item_head_text">¥ 20000</span>-->
-            </div>
+            <!--<span class="list_item_head_text">¥ 20000</span>-->
           </div>
         </div>
       </div>
     </div>
+  </page-layout>
 </template>
-
 <script>
-    export default {
-        name: "price",
+  import {queryProductPrice} from "../../commonJs/api";
+  import PageLayout from "../../layout/pageLayout";
+
+  export default {
+    components: {PageLayout},
+    name: "price",
         data(){
           return{
-             listData:[1,2,3,4,5,6]
+             listData:[]
           }
         },
       methods:{
-
+        goBuy(item){
+          this.$router.push({ name: 'buyIntention',
+            params:{productName:item.productName,productCode:item.productCode}})
+        }
       },
       mounted(){
 
       },
       created(){
+          let self=this;
+        // console.log(this.$store.state.newPrice);
+          this.$getProgress(queryProductPrice)
+            .then(function (res) {
+              // console.log(res);
+              self.listData=res.data.data;
+              self.$store.setState("newPrice",self.listData[0]);
+            }).catch(function (error) {
 
+          })
       }
     }
 </script>
 
-<style scoped>
+<style scoped lang="less">
+  @import "../../assets/css/common.less";
   .link_btn{
-    width:110px;
-    height:33px;
+    width:2.2rem;
+    height:.66rem;
     background:rgba(53,152,255,1);
-    border-radius:4px;
+    border-radius:.08rem;
     align-items: center;
     justify-content: center;
   }
@@ -69,36 +79,36 @@
     width:90%;
     margin-left: 5%;
     flex-direction: row;
-    height: 44px;
+    height: .88rem;
     align-items: center;
     justify-content: center;
     border-top: 1px solid rgba(238,238,238,1);
   }
   .list_item_foot_text{
-    font-size:15px;
+    font-size:.30rem;
     color:#fff;
-    line-height:25px;
+    line-height:.50rem;
   }
   .list_area{
       width: 100%;
-    margin-top: 50px;
+    margin-top: 1rem;
   }
   .list_content_text{
-    font-size:13px;
+    font-size:.26rem;
     color:#666666;
-    line-height:25px;
-    margin-left: 10px;
+    line-height:.50rem;
+    margin-left: .20rem;
   }
   .list_item_content{
     width: 90%;
     margin-left: 5%;
   }
   .list_item_head_text{
-    font-size:15px;
+    font-size:.30rem;
     font-weight: bold;
     color:#333333;
-    line-height:25px;
-    margin-left: 10px;
+    line-height:.50rem;
+    margin-left: .20rem;
   }
   .list_head{
     width:100%;
@@ -109,23 +119,24 @@
     width: 90%;
     margin-left: 5%;
     background-color: white;
-    margin-bottom: 10px;
-    border-radius:5px ;
+    margin-bottom: .26rem;
+    border-radius:.1rem ;
+    box-shadow: #mainColor[cardShadow];
   }
   .list_item_head{
     width:90%;
     margin-left: 5%;
     flex-direction: row;
-    height: 44px;
+    height: .88rem;
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid rgba(238,238,238,1);
   }
   .list_head_title{
-    font-size:15px;
+    font-size:.30rem;
     font-weight:bold;
     color:rgba(51,51,51,1);
-    line-height:42px;
-    margin-left: 3px;
+    line-height:.84rem;
+    margin-left: .06rem;
   }
 </style>

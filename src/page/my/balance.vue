@@ -6,14 +6,12 @@
         <!--</router-link>-->
         <!--&lt;!&ndash;<mt-button icon="more" slot="right"/>&ndash;&gt;-->
       <!--</mt-header>-->
-      <div class="head" :style="{background:head_bg}">
-        <router-link to="/my">
-          <img style="height:15px;width: 9px;" src="static/img/back.png">
-        </router-link>
+      <div class="head" id="head" :style="{background:head_bg}">
+        <img style="height:.30rem;width: .18rem;" @click="$router.back()" src="static/img/back.png" srcset="static/img/back.png 1x,static/img/back@2x.png 2x">
         <span class="head_title">我的余额</span>
-        <img style="width: 27px;height: 5px;" src="static/img/more.png">
+        <img style="width: .40rem;height: .10rem;" src="static/img/more.png" srcset="static/img/more.png 1x,static/img/more@2x.png 2x">
       </div>
-      <div class="header">
+      <div id="head_bottom" class="header">
         <div class="header_content">
           <span class="head_text" style=" margin-left: 20px;">某某某某有限公司</span>
           <div class="show_content">
@@ -26,7 +24,7 @@
           <div class="ver_line"></div>
           <strong class="list_head_title">余额变动明细</strong>
       </div>
-      <div class="list">
+      <div id="content" class="list">
           <div class="list_item" v-for="item in listData">
               <div class="list_item_head">
                   <span class="list_item_head_text">账户余额</span>
@@ -50,7 +48,7 @@
         data() {
           return {
             listData:[1,2,3,4,5,6,7,8],
-            head_bg:""
+            head_bg:"rgba(53,152,255,0)"
           }
         },
       methods:{
@@ -130,7 +128,8 @@
   .header{
     width: 100%;
     height: 300px;
-    background: url("../../assets/img/balance_bg.png") ;
+    background-image: -webkit-image-set( url("../../assets/img/balance_bg.png") 1x, url("../../assets/img/balance_bg@2x.png") 2x);
+    background-image: image-set( url("../../assets/img/balance_bg.png") 1x, url("../../assets/img/balance_bg@2x.png") 2x);
     background-position: center;
   }
   .head_text{

@@ -6,11 +6,16 @@ const path = require('path')
 
 module.exports = {
   dev: {
-
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+      '/auth/*': {
+        target: 'http://knpjy9.natappfree.cc',
+        changeOrigin: true,     // target是域名的话，需要这个参数，
+        secure: false,          // 设置支持https协议的代理
+      }
+    },
 
     // Various Dev Server settings
     host:"10.1.102.124", // can be overwritten by process.env.HOST
@@ -43,7 +48,7 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
+    assetsPublicPath: './',
 
     /**
      * Source Maps
